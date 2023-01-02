@@ -1,0 +1,2 @@
+//Геолокация
+if(update.getMessage().hasLocation()) { BufferumGeolocation.B_Geolocation(message); }

@@ -1,0 +1,175 @@
+import java.sql.*;
+import java.util.Scanner;
+
+public class ConnectionServer {
+    public static String
+            DBReg = "u1771357_buffer", DBMysql = "foo",
+            userReg = "u1771357_solar", userMysql = "root",
+            passwordReg = "Vaq-vik-xbg-9kZ", passwordMysql = "",//password //0cW
+            serverReg = "jdbc:dbtype://u1771357.plsk.regruhosting.ru", serverMysql = "jdbc:mysql://localhost:3306/foo";
+    public static Connection conn;
+    public static Long startTime = null, finishTime = null;
+
+    public static boolean valueConnect(String password) {
+        try {
+            conn = DriverManager.getConnection(serverMysql, userMysql, password);
+            System.out.println("Connected!!!");
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+            //System.out.println("Not connected");
+        }
+    }
+
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        boolean value = true;
+        while(value) {
+            System.out.print("Choose a server: 1-Reg, 2-Mysql >");
+            switch(Integer.parseInt(new Scanner(System.in).nextLine())) {
+                case 1: {
+                    System.out.println("Start connection localhost...");
+                    conn = DriverManager.getConnection(serverReg, userReg, passwordReg);
+                    System.out.println("Connected!!!");
+                    break;
+                }
+                case 2: {
+                    startTime = System.currentTimeMillis();
+                    System.out.println("Start connection localhost...");
+                        Selection s = new Selection();
+                        s.start();
+                        value = false;
+                    break;
+                }
+            }
+        }
+        finishTime = System.currentTimeMillis();
+        System.out.println("time=" + (finishTime-startTime)/1000.000 +  "\tWhat will to do next?");
+    }
+}
+class Selection {
+    private static boolean Result(Integer i) {
+        if(i == 1) { setAt_moment(String.valueOf(char1)); }
+        if(i == 2) {
+            setAt_moment(
+                    String.valueOf(char1) +
+                            String.valueOf(char2)
+            );
+        }
+        if(i == 3) {
+            setAt_moment(
+                    String.valueOf(char1) +
+                            String.valueOf(char2) +
+                            String.valueOf(char3)
+            );
+        }
+        if(i == 4) {
+            setAt_moment(
+                    String.valueOf(char1) +
+                            String.valueOf(char2) +
+                            String.valueOf(char3) +
+                            String.valueOf(char4)
+            );
+        }
+        if(i == 5) {
+            setAt_moment(
+                    String.valueOf(char1) +
+                            String.valueOf(char2) +
+                            String.valueOf(char3) +
+                            String.valueOf(char4) +
+                            String.valueOf(char5)
+            );
+        }
+        if(i == 6) {
+            setAt_moment(
+                    String.valueOf(char1) +
+                            String.valueOf(char2) +
+                            String.valueOf(char3) +
+                            String.valueOf(char4) +
+                            String.valueOf(char5) +
+                            String.valueOf(char6)
+            );
+        }
+
+
+
+        if(ConnectionServer.valueConnect(attempt)) {
+            System.out.println("Your password=" + attempt + "\t\ttime search= ");
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public static boolean selection() {
+        for(int var1 = 48; var1 < 123; var1++)/*var1*/ {
+            if(var1 < 58 || var1 > 64 && var1 < 91 || var1 > 96) {
+                char1 = (char)var1;
+                if(all > 1) {
+                    for(int var2 = 48; var2 < 123; var2++)/*var2*/ {
+                        if(var2 < 58 || var2 > 64 && var2 < 91 || var2 > 96) {
+                            char2 = (char)var2;
+                            if(all > 2) {
+                                for(int var3 = 48; var3 < 123; var3++)/*var3*/ {
+                                    if(var3 < 58 || var3 > 64 && var3 < 91 || var3 > 96) {
+                                        char3 = (char)var3;
+                                        if(all > 3) {
+                                            for(int var4 = 48; var4 < 123; var4++)/*var4*/ {
+                                                if(var4 < 58 || var4 > 64 && var4 < 91 || var4 > 96) {
+                                                    char4 = (char)var4;
+                                                    if(all > 4) {
+                                                        for(int var5 = 48; var5 < 123; var5++)/*var5*/ {
+                                                            if(var5 < 58 || var5 > 64 && var5 < 91 || var5 > 96) {
+                                                                char5 = (char)var5;
+                                                                if(all > 5) {
+                                                                    for(int var6 = 48; var6 < 123; var6++)/*var6*/ {
+                                                                        if(var6 < 58 || var6 > 64 && var6 < 91 || var6 > 96) {
+                                                                            char6 = (char)var6;
+                                                                            if(Result(6)) { return false; }
+                                                                        }
+                                                                    }
+                                                                } else if(Result(5)) { return false; }
+                                                            }
+                                                        }
+                                                    } else if(Result(4)) { return false; }
+                                                }
+                                            }
+                                        } else if(Result(3)) { return false; }
+                                    }
+                                }
+                            } else if(Result(2)) { return false; }
+                        }
+                    }
+                } else if(Result(1)) { return false; }
+            }
+        }
+        return true;
+    }
+
+    public static Integer all = 1;
+    private static char char1, char2, char3, char4, char5, char6;
+    private static void setAt_moment(String at) { attempt = at; }
+    public static String getAt_moment() { return attempt; }
+    private static String attempt = "";
+    public static void start() {
+        Thread thread = new Report();
+        thread.start();
+        out:
+        for(int i = 1; i <= 6; i++) {
+            System.out.println("start");
+            if(selection()) { all++; }
+            else { break out; }
+        }
+    }
+}
+class Report extends Thread {
+    public void run() {
+        while(true) {
+            try {
+                Thread.sleep(15000);
+                System.out.println("\tat_moment=" + Selection.getAt_moment() + "\t\ttime=");
+            } catch(InterruptedException e) { e.printStackTrace(); }
+        }
+    }
+}

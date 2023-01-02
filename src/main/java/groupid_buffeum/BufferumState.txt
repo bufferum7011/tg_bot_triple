@@ -1,0 +1,8 @@
+package groupid_buffeum;
+
+public class BufferumState {
+    public static void state() {
+        System.out.print("[state]");
+        
+    }
+}

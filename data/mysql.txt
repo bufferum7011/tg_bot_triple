@@ -1,0 +1,12 @@
+mysqld --initialize --console
+A temporary password is generated for root@localhost: pzsk#wdZe4k>
+
+cd /D D:\mysql\bin
+mysqld --console
+
+cd /D D:\mysql\bin
+mysql -uroot -p
+pzsk#wdZe4k>
+
+alter user 'root'@'localhost' identified by 'r541u'; --изменил пароль
+

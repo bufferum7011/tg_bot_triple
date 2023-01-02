@@ -1,0 +1,13 @@
+package groupid_buffeum;
+
+public class BufferumGeolocation {
+    public static void location() {
+        System.out.print("[location]");
+        
+        double latitude = groupid_buffeum.Bots.message.getLocation().getLatitude();//Широта
+        Double longitude = groupid_buffeum.Bots.message.getLocation().getLongitude();//Долгота
+
+        System.out.println(latitude);
+        System.out.println(longitude);
+    }
+}

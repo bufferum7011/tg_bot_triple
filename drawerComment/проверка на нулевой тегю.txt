@@ -1,0 +1,7 @@
+if(update.getMessage().getFrom().getUserName() == null) {
+    try { execute(BufferumHandler.nullTag(update)); }
+    catch(TelegramApiException e) { e.printStackTrace(); }
+} else {
+    тут по сути comand 
+    и callback
+}
